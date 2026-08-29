@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import About from "../components/About.astro";
+import ContactStrip from "../components/ContactStrip.astro";
+import FeaturedProjects from "../components/FeaturedProjects.astro";
+import Hero from "../components/Hero.astro";
+
+const title = "Shravani Patil — Data Science & Machine Learning";
+const description =
+  "Shravani Patil builds practical data science, machine learning, and analytics solutions—and explains them clearly.";
+---
+
+<BaseLayout title={title} description={description}>
+  <main id="main-content">
+    <Hero />
+    <About />
+    <FeaturedProjects />
+  </main>
+  <ContactStrip />
+</BaseLayout>

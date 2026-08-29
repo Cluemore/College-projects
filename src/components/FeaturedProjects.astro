@@ -1,0 +1,407 @@
+---
+import { projects } from "../data/projects";
+---
+
+<section class="work-section" id="work" aria-labelledby="work-title" data-project-ring>
+  <div class="work-shell">
+    <div class="work-topline">
+      <p>03 / Selected work</p>
+      <p>Three builds · 2025–2026</p>
+    </div>
+
+    <header class="work-heading">
+      <p class="work-kicker">Models are only useful when people can use them.</p>
+      <h2 id="work-title">
+        <span>Selected</span>
+        <span>systems<span class="work-heading-dot">.</span></span>
+      </h2>
+      <p class="work-intro">
+        Predictive modelling, applied NLP, and recommendation systems—presented
+        as working products, with the evidence and limitations kept visible.
+      </p>
+    </header>
+
+    <div
+      class="project-ring"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured projects"
+      aria-describedby="project-ring-instructions"
+      tabindex="0"
+    >
+      <p class="sr-only" id="project-ring-instructions">
+        Use the previous and next buttons, the left and right arrow keys, or a
+        horizontal swipe to move through the projects.
+      </p>
+
+      <div class="project-ring-stage" data-ring-stage>
+        {projects.map((project, index) => (
+          <article
+            class:list={[
+              "project-card",
+              `project-card--${project.id}`,
+              { "is-active": index === 0 },
+            ]}
+            data-project-card
+            data-project-index={index}
+            data-position={index === 0 ? "active" : index === 1 ? "next" : "previous"}
+          >
+            <button
+              class="project-card-select"
+              type="button"
+              data-project-select
+              aria-label={`Show ${project.titleExtended}`}
+              hidden
+            ></button>
+
+            <div class="project-card-inner" aria-hidden="false">
+              <div class="project-card-topline">
+                <p>{project.number} / {project.year}</p>
+                <p>{project.eyebrow}</p>
+              </div>
+
+              {project.id === "mumbai-flood" && (
+                <div class="project-layout project-layout--flood">
+                  <div class="flood-visual project-visual">
+                    <img
+                      class="flood-dashboard"
+                      src={project.primaryImage.src}
+                      width={project.primaryImage.width}
+                      height={project.primaryImage.height}
+                      loading="lazy"
+                      decoding="async"
+                      alt={project.primaryImage.alt}
+                    />
+                    {project.secondaryImage && (
+                      <img
+                        class="flood-prediction"
+                        src={project.secondaryImage.src}
+                        width={project.secondaryImage.width}
+                        height={project.secondaryImage.height}
+                        loading="lazy"
+                        decoding="async"
+                        alt={project.secondaryImage.alt}
+                      />
+                    )}
+                    <span class="flood-grid" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="project-copy project-copy--flood">
+                    <p class="project-card-kicker">{project.eyebrow}</p>
+                    <h3>{project.titleExtended}</h3>
+                    <p class="project-summary">{project.summary}</p>
+                    <dl class="project-metrics">
+                      {project.metrics.map((metric) => (
+                        <div>
+                          <dt>{metric.label}</dt>
+                          <dd>{metric.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p class="project-note">{project.note}</p>
+                    <div class="project-tags" aria-label="Technologies used">
+                      {project.stack.map((item) => <span>{item}</span>)}
+                    </div>
+                    <div class="project-links">
+                      {project.links.map((link, linkIndex) => (
+                        <a
+                          class:list={{ "project-link--primary": linkIndex === 0 }}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {link.label}<span aria-hidden="true">↗</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {project.id === "zero-shot" && (
+                <div class="project-layout project-layout--zero-shot">
+                  <div class="zero-copy project-copy">
+                    <p class="project-card-kicker">{project.eyebrow}</p>
+                    <h3>{project.titleExtended}</h3>
+                    <p class="project-summary">{project.summary}</p>
+
+                    <div class="zero-flow" aria-label="Experiment flow">
+                      <span>Article</span><span aria-hidden="true">→</span>
+                      <span>3 formats</span><span aria-hidden="true">→</span>
+                      <span>Summary</span>
+                    </div>
+
+                    <dl class="project-metrics">
+                      {project.metrics.map((metric) => (
+                        <div>
+                          <dt>{metric.label}</dt>
+                          <dd>{metric.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p class="project-note">{project.note}</p>
+                    <div class="project-links">
+                      {project.links.map((link, linkIndex) => (
+                        <a
+                          class:list={{ "project-link--primary": linkIndex === 0 }}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {link.label}<span aria-hidden="true">↗</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="zero-visual project-visual">
+                    <div class="zero-window-bar" aria-hidden="true">
+                      <span></span><span></span><span></span><p>bart-large-cnn / notebook</p>
+                    </div>
+                    <img
+                      class="zero-code"
+                      src={project.primaryImage.src}
+                      width={project.primaryImage.width}
+                      height={project.primaryImage.height}
+                      loading="lazy"
+                      decoding="async"
+                      alt={project.primaryImage.alt}
+                    />
+                    {project.secondaryImage && (
+                      <img
+                        class="zero-results"
+                        src={project.secondaryImage.src}
+                        width={project.secondaryImage.width}
+                        height={project.secondaryImage.height}
+                        loading="lazy"
+                        decoding="async"
+                        alt={project.secondaryImage.alt}
+                      />
+                    )}
+                    <div class="project-tags" aria-label="Technologies used">
+                      {project.stack.map((item) => <span>{item}</span>)}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {project.id === "movie-recommender" && (
+                <div class="project-layout project-layout--movie">
+                  <div class="movie-visual project-visual">
+                    <img
+                      src={project.primaryImage.src}
+                      width={project.primaryImage.width}
+                      height={project.primaryImage.height}
+                      loading="lazy"
+                      decoding="async"
+                      alt={project.primaryImage.alt}
+                    />
+                    <div class="movie-title-overlay" aria-hidden="true">
+                      <span>Selected title</span>
+                      <strong>Avatar</strong>
+                      <span>5 similar films</span>
+                    </div>
+                  </div>
+
+                  <div class="movie-copy project-copy">
+                    <div>
+                      <p class="project-card-kicker">{project.eyebrow}</p>
+                      <h3>{project.titleExtended}</h3>
+                    </div>
+                    <p class="project-summary">{project.summary}</p>
+                    <dl class="project-metrics">
+                      {project.metrics.map((metric) => (
+                        <div>
+                          <dt>{metric.label}</dt>
+                          <dd>{metric.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p class="project-note">{project.note}</p>
+                    <div class="movie-card-footer">
+                      <div class="project-tags" aria-label="Technologies used">
+                        {project.stack.map((item) => <span>{item}</span>)}
+                      </div>
+                      <div class="project-links">
+                        {project.links.map((link, linkIndex) => (
+                          <a
+                            class:list={{ "project-link--primary": linkIndex === 0 }}
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {link.label}<span aria-hidden="true">↗</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="project-ring-nav">
+        <button class="ring-arrow" type="button" data-ring-previous>
+          <span aria-hidden="true">←</span> Previous
+        </button>
+
+        <div class="ring-status">
+          <p data-ring-counter>01 / 03</p>
+          <div class="ring-progress" aria-hidden="true">
+            {projects.map((_, index) => (
+              <span class:list={{ "is-current": index === 0 }} data-ring-dot></span>
+            ))}
+          </div>
+          <p class="sr-only" aria-live="polite" data-ring-live>
+            Project 1 of 3: {projects[0].titleExtended}
+          </p>
+        </div>
+
+        <button class="ring-arrow" type="button" data-ring-next>
+          Next <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+
+    <p class="work-footnote">
+      No autoplay. Move through the ring with the controls, keyboard arrows, or a swipe.
+    </p>
+  </div>
+</section>
+
+<noscript>
+  <style>
+    .project-ring-stage {
+      display: grid;
+      height: auto;
+      gap: 2rem;
+      perspective: none;
+    }
+
+    .project-ring-stage::before,
+    .project-ring-nav,
+    .work-footnote {
+      display: none;
+    }
+
+    .project-card {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 100%;
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+
+    .project-card-select {
+      display: none;
+    }
+  </style>
+</noscript>
+
+<script is:inline define:vars={{ projectNames: projects.map((project) => project.titleExtended) }}>
+  const ring = document.querySelector("[data-project-ring]");
+
+  if (ring instanceof HTMLElement) {
+    const cards = Array.from(ring.querySelectorAll("[data-project-card]"));
+    const previousButton = ring.querySelector("[data-ring-previous]");
+    const nextButton = ring.querySelector("[data-ring-next]");
+    const counter = ring.querySelector("[data-ring-counter]");
+    const live = ring.querySelector("[data-ring-live]");
+    const dots = Array.from(ring.querySelectorAll("[data-ring-dot]"));
+    const stage = ring.querySelector("[data-ring-stage]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let activeIndex = 0;
+    let pointerStart = null;
+    let locked = false;
+
+    const updateRing = (nextIndex, announce = true) => {
+      const total = cards.length;
+      activeIndex = (nextIndex + total) % total;
+
+      cards.forEach((card, index) => {
+        const rawOffset = (index - activeIndex + total) % total;
+        const position = rawOffset === 0 ? "active" : rawOffset === 1 ? "next" : "previous";
+        const inner = card.querySelector(".project-card-inner");
+        const selectButton = card.querySelector("[data-project-select]");
+        const links = Array.from(card.querySelectorAll("a"));
+        const isActive = position === "active";
+
+        card.dataset.position = position;
+        card.classList.toggle("is-active", isActive);
+        inner?.setAttribute("aria-hidden", String(!isActive));
+
+        if (selectButton instanceof HTMLButtonElement) {
+          selectButton.hidden = isActive;
+          selectButton.tabIndex = isActive ? -1 : 0;
+        }
+
+        links.forEach((link) => {
+          if (link instanceof HTMLAnchorElement) link.tabIndex = isActive ? 0 : -1;
+        });
+      });
+
+      dots.forEach((dot, index) => dot.classList.toggle("is-current", index === activeIndex));
+      if (counter) counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+      if (announce && live) live.textContent = `Project ${activeIndex + 1} of ${cards.length}: ${projectNames[activeIndex]}`;
+    };
+
+    const move = (direction) => {
+      if (locked) return;
+      updateRing(activeIndex + direction);
+      if (!reducedMotion.matches) {
+        locked = true;
+        window.setTimeout(() => { locked = false; }, 520);
+      }
+    };
+
+    previousButton?.addEventListener("click", () => move(-1));
+    nextButton?.addEventListener("click", () => move(1));
+
+    cards.forEach((card, index) => {
+      card.querySelector("[data-project-select]")?.addEventListener("click", () => updateRing(index));
+    });
+
+    ring.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        move(-1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        move(1);
+      }
+    });
+
+    stage?.addEventListener("pointerdown", (event) => {
+      pointerStart = event.clientX;
+    });
+
+    stage?.addEventListener("pointerup", (event) => {
+      if (pointerStart === null) return;
+      const travel = event.clientX - pointerStart;
+      pointerStart = null;
+      if (Math.abs(travel) < 45) return;
+      move(travel > 0 ? -1 : 1);
+    });
+
+    stage?.addEventListener("pointercancel", () => { pointerStart = null; });
+
+    const reveal = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        ring.classList.add("is-revealed");
+        reveal.disconnect();
+      },
+      { threshold: 0.12 },
+    );
+
+    ring.classList.add("is-enhanced");
+    reveal.observe(ring);
+    updateRing(0, false);
+  }
+</script>
