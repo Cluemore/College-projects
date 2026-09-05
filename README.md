@@ -1,2 +1,2 @@
-# mumbai-flood-risk-system draft -1 
-All of my college capstone projects
+# mumbai-flood-risk-system
+SEM 6 capstone project
